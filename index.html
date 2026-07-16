@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenEmma</title>
+    <meta
+      name="description"
+      content="OpenEmmaLab is developing OpenEmma, a community-driven version of Emma."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #171717;
+        --muted: #5d6470;
+        --line: #e8e2da;
+        --paper: #fbfaf7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(251, 250, 247, 0.96)),
+          var(--paper);
+      }
+
+      main {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+
+      .lockup {
+        width: min(100%, 720px);
+        text-align: center;
+      }
+
+      .mark {
+        width: 56px;
+        height: 1px;
+        margin: 0 auto 34px;
+        background: var(--line);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(56px, 12vw, 136px);
+        font-weight: 400;
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(16px, 2.2vw, 22px);
+        line-height: 1.5;
+        text-transform: lowercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="lockup" aria-label="OpenEmma coming soon">
+        <div class="mark" aria-hidden="true"></div>
+        <h1>OpenEmma</h1>
+        <p>coming soon</p>
+      </section>
+    </main>
+  </body>
+</html>
