@@ -3,18 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>OpenEmma</title>
+    <title>OpenEmmaLab</title>
     <meta
       name="description"
-      content="OpenEmmaLab is developing OpenEmma, a community-driven version of Emma."
+      content="OpenEmmaLab is building an open future for AI in Italy, starting with Emma."
     />
     <style>
       :root {
         color-scheme: light;
-        --ink: #171717;
-        --muted: #5d6470;
-        --line: #e8e2da;
-        --paper: #fbfaf7;
+        --paper: #f4eadc;
+        --ink: #6d3f31;
+        --muted: rgba(109, 63, 49, 0.72);
       }
 
       * {
@@ -23,64 +22,136 @@
 
       html,
       body {
-        height: 100%;
+        min-height: 100%;
       }
 
       body {
         margin: 0;
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", sans-serif;
         color: var(--ink);
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(251, 250, 247, 0.96)),
-          var(--paper);
+        background: var(--paper);
+        font-family:
+          "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+          Georgia, serif;
       }
 
       main {
-        min-height: 100%;
+        min-height: 100vh;
         display: grid;
-        place-items: center;
-        padding: 32px;
+        align-items: center;
+        padding: clamp(24px, 5vw, 72px);
       }
 
-      .lockup {
-        width: min(100%, 720px);
-        text-align: center;
+      .wrap {
+        width: min(100%, 1120px);
+        margin: 0 auto;
       }
 
-      .mark {
-        width: 56px;
-        height: 1px;
-        margin: 0 auto 34px;
-        background: var(--line);
+      .language {
+        position: fixed;
+        top: clamp(18px, 4vw, 42px);
+        right: clamp(18px, 4vw, 42px);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 32px;
+        padding: 0;
+        border: 0;
+        color: var(--ink);
+        background: transparent;
+        font: inherit;
+        font-size: 14px;
+        letter-spacing: 0;
+        cursor: pointer;
+      }
+
+      .language .inactive {
+        color: var(--muted);
+      }
+
+      .language .divider {
+        color: var(--muted);
       }
 
       h1 {
         margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: clamp(56px, 12vw, 136px);
+        max-width: 980px;
+        font-size: clamp(74px, 16vw, 214px);
         font-weight: 400;
-        line-height: 0.92;
+        line-height: 0.78;
         letter-spacing: 0;
+        text-transform: lowercase;
       }
 
-      p {
-        margin: 24px 0 0;
+      .copy {
+        margin-top: clamp(46px, 9vw, 116px);
         color: var(--muted);
-        font-size: clamp(16px, 2.2vw, 22px);
-        line-height: 1.5;
-        text-transform: lowercase;
+        font-size: clamp(20px, 3vw, 38px);
+        line-height: 1.12;
+      }
+
+      .copy p {
+        margin: 0;
+      }
+
+      .copy span {
+        display: block;
+        margin-top: 0.25em;
+        color: var(--ink);
+      }
+
+      [hidden] {
+        display: none;
+      }
+
+      @media (max-width: 720px) {
+        .language {
+          font-size: 14px;
+        }
+
+        h1 {
+          font-size: clamp(70px, 23vw, 130px);
+        }
       }
     </style>
   </head>
   <body>
+    <button class="language" type="button" aria-label="Switch language">
+      <span data-code="en">EN</span>
+      <span class="divider">/</span>
+      <span class="inactive" data-code="it">IT</span>
+    </button>
     <main>
-      <section class="lockup" aria-label="OpenEmma coming soon">
-        <div class="mark" aria-hidden="true"></div>
-        <h1>OpenEmma</h1>
-        <p>coming soon</p>
+      <section class="wrap" aria-label="OpenEmmaLab coming soon">
+        <h1 data-heading>coming soon</h1>
+        <div class="copy">
+          <p lang="en" data-lang="en">
+            Building an open future for AI in Italy
+            <span>Starting with Emma</span>
+          </p>
+          <p lang="it" data-lang="it" hidden>
+            Costruire un futuro aperto per l'AI in Italia
+            <span>Partendo da Emma</span>
+          </p>
+        </div>
       </section>
     </main>
+    <script>
+      const button = document.querySelector(".language");
+      const heading = document.querySelector("[data-heading]");
+      const english = document.querySelector('[data-lang="en"]');
+      const italian = document.querySelector('[data-lang="it"]');
+      const englishCode = document.querySelector('[data-code="en"]');
+      const italianCode = document.querySelector('[data-code="it"]');
+
+      button.addEventListener("click", () => {
+        const showItalian = italian.hidden;
+        italian.hidden = !showItalian;
+        english.hidden = showItalian;
+        document.documentElement.lang = showItalian ? "it" : "en";
+        heading.textContent = showItalian ? "prossimamente" : "coming soon";
+        englishCode.classList.toggle("inactive", showItalian);
+        italianCode.classList.toggle("inactive", !showItalian);
+      });
+    </script>
   </body>
 </html>
